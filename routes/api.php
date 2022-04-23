@@ -45,7 +45,8 @@ Route::post('/login', function (Request $request) {
     }
 
     $user = Auth::user();
-    $token = $user->createToken('token');
+    $user->tokens()->delete();
+    $token = $user->createToken('token', ['is_admin']);
 
     return response()->json($token->plainTextToken);
 });

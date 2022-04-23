@@ -52,6 +52,7 @@ class SeriesController extends Controller
 
     public function destroy(int $series, Authenticatable $user)
     {
+        dd($user->tokenCan('is_admin'));
         Series::destroy($series);
         return response()->noContent();
     }
